@@ -1,0 +1,49 @@
+{
+	"data":[
+      {
+         "image_path": "static/img/blog1.jpg",
+         "heading": "HBO and Netflix lead this year’s nominations.",
+         "date":"Jul 16, 2017",
+         "user_name":"Admin",
+         "user_icon":"fa-user-circle-o",
+         "content": "Quisque et tincidunt ex, ut mollis ante. Vestibulum Vestibulum vulputate eget nulla sed tincidunt Nam euismod sem...",
+			"read_more_bgcolor":""
+      },
+      {
+         "image_path": "static/img/blog2.jpg",
+         "heading": "Party Jokes Startling But Unnecessary.",
+         "date":"Jul 16, 2017",
+         "user_name":"Admin",
+         "user_icon":"fa-user-circle-o",
+         "content": "Quisque et tincidunt ex, ut mollis ante. Vestibulum vulputate eget nulla sed tincidunt. Quisque et tincidunt ex...",
+			"read_more_bgcolor":""
+      },
+      {
+         "image_path": "static/img/blog3.jpg",
+         "heading": "How To Meet That Special Someone.",
+         "date":"Jul 16, 2017",
+         "user_name":"Admin",
+         "user_icon":"fa-user-circle-o",
+         "content": "Quisque et tincidunt ex, ut mollis ante. Vestibulum vulputate eget nulla sed tincidunt. Quisque et tincidunt ex...",
+			"read_more_bgcolor":""
+      },
+      {
+         "image_path": "static/img/blog4.jpg",
+         "heading": "Video Games Playing With Imagination.",
+         "date":"Jul 16, 2017",
+         "user_name":"Admin",
+         "user_icon":"fa-user-circle-o",
+         "content": "Quisque et tincidunt ex, ut mollis ante. Vestibulum vulputate eget nulla sed tincidunt. Quisque et tincidunt ex...",
+			"read_more_bgcolor":""
+      },
+      {
+         "image_path": "static/img/blog5.jpg",
+         "heading": "Headset No Longer Wired For Sound.",
+         "date":"Jul 16, 2017",
+         "user_name":"Admin",
+         "user_icon":"fa-user-circle-o",
+         "content": "Quisque et tincidunt ex, ut mollis ante. Vestibulum vulputate eget nulla sed tincidunt. Quisque et tincidunt ex...",
+			"read_more_bgcolor":""
+      }
+	]
+}

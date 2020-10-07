@@ -1,0 +1,123 @@
+/*========== Pricing css ==========*/
+.pricing-section-1 {
+	.card {
+		transition: all 0.5s ease 0s;
+	}
+	.card.active, .card:hover {
+		background-color: $blue;
+		color: $white;
+		@extend .shadow-md;
+		transition: all 0.5s ease 0s;
+		h2 {
+			color: $white;
+		}
+		.btn {
+			background: $yellow;
+			color: $black;
+			border-color: $yellow;
+		}
+	}
+}
+
+.pricing-section-3 {
+
+  .black-tp-layer {
+    padding: 7rem 0;
+  }
+}
+
+
+/*======== Pricing Section ==============*/
+
+.pricing-card {
+  //   text-align: center;
+  background-color: $card-bg;
+  box-shadow: 0 3px 14px 0 rgba(0, 0, 0, 0.3);
+  transition: all 0.4s ease-in 0s;
+  padding: 3.2rem 2rem !important;
+  &:hover {
+    transform: translateY(-20px);
+    box-shadow: 0 18px 30px 0 rgba(0, 0, 0, 0.3);
+  }
+}
+
+.pricing-list {
+  text-align: center;
+}
+
+
+//pricing
+
+.p-price h2 {
+  font-size: 3rem;
+  margin-bottom: 0;
+  line-height: 0.9;
+}
+.p-main-feature {
+  ul {
+    padding-left: 0;
+    li {
+    }
+  }
+}
+.p-feature {
+  ul {
+    padding-left: 0;
+    i {
+      background: $green;
+      width: 15px;
+      height: 15px;
+      font-size: 0.6rem;
+      display: flex;
+      color: #fff;
+      justify-content: center;
+      align-items: center;
+      border-radius: 100%;
+    }
+  }
+}
+.pricing-wrap-plan {
+  transition: all 0.3s ease-in-out;
+  * {
+    transition: all 0.3s ease-in-out;
+  }
+  &:hover {
+    transform: translateY(-10px) scale(1.02);
+  }
+  .card-body {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+  &:hover {
+    i.text-primary {
+      color: $green !important;
+    }
+    .btn-primary {
+      background: $green !important;
+      color: #fff !important;
+      border-color: $green !important;
+    }
+  }
+}
+
+.border-y {
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  margin: 1rem 0;
+}
+@media (max-width: 991px) {
+  .contact-block {
+    padding: 3rem 2rem;
+  }
+}
+@media(max-width:575px){
+	.contact-block{
+		text-align: center;
+		.d-flex{
+			display: block !important;
+		}
+		.mr-4{
+			margin-right: 0 !important;
+		}
+	}
+}

@@ -1,0 +1,29 @@
+{
+   "name": "zemle-vue",
+   "version": "2.0.0",
+   "private": true,
+   "scripts": {
+      "serve": "vue-cli-service serve",
+      "build": "vue-cli-service build"
+   },
+   "dependencies": {
+      "bootstrap": "^4.5.2",
+      "core-js": "^3.6.5",
+      "google-maps-api-loader": "^1.1.1",
+      "jquery": "^3.5.1",
+      "popper.js": "^1.16.1",
+      "vue": "^2.6.12",
+      "vue-router": "^3.4.3",
+      "vue-slick": "^1.1.15",
+      "vue2-google-maps": "^0.10.7",
+      "vuex": "^3.5.1"
+   },
+   "devDependencies": {
+      "@vue/cli-plugin-babel": "^4.5.4",
+      "@vue/cli-service": "^4.5.4",
+      "fancybox": "^3.0.1",
+      "node-sass": "^4.14.1",
+      "sass-loader": "^10.0.2",
+      "vue-template-compiler": "^2.6.12"
+   }
+}

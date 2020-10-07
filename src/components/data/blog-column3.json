@@ -1,0 +1,64 @@
+{
+	"data":[
+      {
+         "image_path": "static/img/1-blog.jpg",
+         "heading": "Understand The Idea Of Theme Now.",
+         "date":"Jul 16, 2017",
+         "user_name":"Admin",
+         "user_icon":"fa-user-circle-o",
+         "content": "Quisque et tincidunt ex, ut mollis ante. Vestibulum vulputate eget nulla sed tincidunt. Nam euismod sem...",
+         "read_more_url": "javascript:void(0);",
+			"read_more_bgcolor":"bg-primary"
+      },
+      {
+         "image_path": "static/img/2-blog.jpg",
+         "heading": "Things That Make You Love/Hate",
+         "date":"Jul 16, 2017",
+         "user_name":"Admin",
+         "user_icon":"fa-user-circle-o",
+         "content": "Quisque et tincidunt ex, ut mollis ante. Vestibulum vulputate eget nulla sed tincidunt. Nam euismod sem...",
+         "read_more_url": "javascript:void(0);",
+			"read_more_bgcolor":""
+      },
+      {
+         "image_path": "static/img/3-blog.jpg",
+         "heading": "5 Signs You're In Love With Theme",
+         "date":"Jul 16, 2017",
+         "user_name":"Admin",
+         "user_icon":"fa-user-circle-o",
+         "content": "Quisque et tincidunt ex, ut mollis ante. Vestibulum vulputate eget nulla sed tincidunt. Nam euismod sem...",
+         "read_more_url": "javascript:void(0);",
+			"read_more_bgcolor":""
+      },
+      {
+         "image_path": "static/img/4-blog.jpg",
+         "heading": "Ten Things You Should Do In Theme",
+         "date":"Jul 16, 2017",
+         "user_name":"Admin",
+         "user_icon":"fa-user-circle-o",
+         "content": "Quisque et tincidunt ex, ut mollis ante. Vestibulum vulputate eget nulla sed tincidunt. Nam euismod sem...",
+         "read_more_url": "javascript:void(0);",
+			"read_more_bgcolor":""
+      },
+      {
+         "image_path": "static/img/5-blog.jpg",
+         "heading": "10 Important Life Lessons Theme",
+         "date":"Jul 16, 2017",
+         "user_name":"Admin",
+         "user_icon":"fa-user-circle-o",
+         "content": "Quisque et tincidunt ex, ut mollis ante. Vestibulum vulputate eget nulla sed tincidunt. Nam euismod sem...",
+         "read_more_url": "javascript:void(0);",
+			"read_more_bgcolor":""
+      },
+      {
+         "image_path": "static/img/6-blog.jpg",
+         "heading": "The new version is now live!",
+         "date":"Jul 16, 2017",
+         "user_name":"Admin",
+         "user_icon":"fa-user-circle-o",
+         "content": "Quisque et tincidunt ex, ut mollis ante. Vestibulum vulputate eget nulla sed tincidunt. Nam euismod sem...",
+         "read_more_url": "javascript:void(0);",
+			"read_more_bgcolor":""
+      }
+	]
+}

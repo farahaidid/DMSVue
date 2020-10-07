@@ -1,0 +1,14 @@
+<template>
+   <!-- Search Now -->
+   <form class="send-mail d-block">
+      <div class="form-row justify-content-center">
+         <div class="form-group col-9">
+            <input type = "text" class="form-control w-100" placeholder="Search for..." aria-label="Search for..." formControlName = "name"/>
+         </div>
+         <div class="form-group col-3">
+            <button type = "button" class="btn btn-success btn-block"><i class="fa fa-search"></i></button>
+         </div>
+      </div>
+   </form>
+   <!-- Search Now Closed -->
+</template>

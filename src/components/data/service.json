@@ -1,0 +1,64 @@
+{
+   "data":[
+      {
+        "icon":{
+          "name":"ion-ios-bulb",
+          "color":"bg-custom-primary"
+        },
+        "title":" Innovative Designs ",
+        "content":"Flexible fremework to provide you the full control over designs and functionality.",
+        "link":"javascript:void(0)",
+        "btnBgClass": "btn-outline-warning"
+      },
+      {
+        "icon":{
+          "name":"ion-ios-infinite",
+          "color":"bg-custom-success"
+        },
+        "title":" Flexibility ",
+        "content":"At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesen.",
+        "link":"javascript:void(0)",
+        "btnBgClass": "btn-outline-primary"
+      },
+      {
+        "icon":{
+          "name":"ion-ios-flash",
+          "color":"bg-custom-info"
+        },
+        "title":" Powerful UI ",
+        "content":"Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo mi.",
+        "link":"javascript:void(0)",
+        "btnBgClass": "btn-outline-info"
+      },
+      {
+        "icon":{
+          "name":"icon ion-md-nutrition",
+          "color":"bg-custom-danger"
+        },
+        "title":"Strategy",
+        "content":"Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo min.",
+        "link":"javascript:void(0)",
+        "btnBgClass": "btn-outline-info"
+      },
+		  {
+        "icon":{
+          "name":"icon ion-md-create",
+          "color":"bg-custom-warning"
+        },
+        "title":"Custom Design",
+        "content":"Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus.",
+        "link":"javascript:void(0)",
+        "btnBgClass": "btn-outline-info"
+      },
+		  {
+        "icon":{
+          "name":"icon ion-md-chatboxes",
+          "color":"bg-custom-primary"
+        },
+        "title":"24X7 Support",
+        "content":"Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minusdw. ",
+        "link":"javascript:void(0)",
+        "btnBgClass": "btn-outline-info"
+      }
+   ]
+}

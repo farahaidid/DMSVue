@@ -1,0 +1,60 @@
+{
+	"data":[
+      {
+         "image_path": "static/img/1-blog.jpg",
+         "heading": "How Does It Work",
+         "date":"Jul 16, 2017",
+         "user_name":"Admin",
+         "user_icon":"fa-user-circle-o",
+         "content": "Quisque et tincidunt ex, ut mollis ante. Vestibulum vulputate eget nulla sed tincidunt. Nam euismod sem...",
+         "read_more_url": "javascript:void(0)",
+			"read_more_bgcolor":"btn-primary"
+      },
+      {
+         "image_path": "static/img/1-blog.jpg",
+         "heading": "5 Tips For App Development",
+         "date":"Jul 16, 2017",
+         "user_name":"Admin",
+         "user_icon":"fa-user-circle-o",
+         "content": "Quisque et tincidunt ex, ut mollis ante. Vestibulum vulputate eget nulla sed tincidunt. Nam euismod sem...",
+         "read_more_url": "javascript:void(0)",
+			"read_more_bgcolor":"btn-warning"
+      },
+      {
+         "image_path": "static/img/2-blog.jpg",
+         "heading": "How To Manage Project",
+         "date":"Jul 16, 2017",
+         "user_name":"Admin",
+         "user_icon":"fa-user-circle-o",
+         "content": "Quisque et tincidunt ex, ut mollis ante. Vestibulum vulputate eget nulla sed tincidunt. Nam euismod sem...",
+			"read_more_bgcolor":"btn-success"
+      },
+      {
+         "image_path": "static/img/3-blog.jpg",
+         "heading": "Convert Users Into Customers",
+         "date":"Jul 16, 2017",
+         "user_name":"Admin",
+         "user_icon":"fa-user-circle-o",
+         "content": "Quisque et tincidunt ex, ut mollis ante. Vestibulum vulputate eget nulla sed tincidunt. Nam euismod sem...",
+			"read_more_bgcolor":"bg-yellow"
+      },
+      {
+         "image_path": "static/img/4-blog.jpg",
+         "heading": "How To Avoid Conflict",
+         "date":"Jul 16, 2017",
+         "user_name":"Admin",
+         "user_icon":"fa-user-circle-o",
+         "content": "Quisque et tincidunt ex, ut mollis ante. Vestibulum vulputate eget nulla sed tincidunt. Nam euismod sem...",
+			"read_more_bgcolor":"btn-danger"
+      },
+      {
+         "image_path": "static/img/5-blog.jpg",
+         "heading": "New Trends In Design",
+         "date":"Jul 16, 2017",
+         "user_name":"Admin",
+         "user_icon":"fa-user-circle-o",
+         "content": "Quisque et tincidunt ex, ut mollis ante. Vestibulum vulputate eget nulla sed tincidunt. Nam euismod sem...",
+			"read_more_bgcolor":"btn-dark"
+      }
+	]
+}
