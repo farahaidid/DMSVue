@@ -1,9 +1,9 @@
 /*========== Home Css ==========*/
 .site-banner {
-  background: url("/static/img/index-banner.jpg");
+  background: url("../../assets/images/logos/logo_transparent.png");
   background-repeat: no-repeat;
   background-position: center center;
-  background-size: cover;
+  background-size: contain;
   height: 100vh;
 }
 .banner-wrapper {
@@ -62,7 +62,7 @@ p {
 }
 .bg-after {
   pointer-events: none;
-  background-color: rgba($blue, 0.6);
+  background-color: rgba(93, 105, 118, 0.6);
   position: absolute;
   top: 0;
   left: 0;
@@ -879,10 +879,10 @@ p {
     }
   }
 }
-.btn {
-  font-size: 1.1rem;
-  font-weight: 600;
-}
+// .btn {
+//   font-size: 1.1rem;
+//   font-weight: 600;
+// }
 
 .list-unstyled {
   .mb-4 {

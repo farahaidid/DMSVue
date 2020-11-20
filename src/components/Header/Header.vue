@@ -2,13 +2,13 @@
    <!--  Top menu -->
    <nav 
       id="mainNav" 
-      class="navbar navbar-expand-md navbar-dark fixed-top"
-      :class="$route.path==='/home' ? '' : 'bg-primary'"
+      class="navbar navbar-expand-md navbar-dark fixed-top py-0"
+      :class="$route.path==='/home' ? '' : 'bg-header'"
       >      
       <div class="rtl-layout" @click="addToggleClass()"><a href="javascript:void(0);">RTL</a></div>
       <div class="container">
          <router-link class="navbar-brand" to="/home" routerLinkActive="active-link">
-            <img src="/static/img/zemle-logo.png" class="img-fluid" width="110" height="37">
+            <img src="@/assets/images/logos/logo_transparent.png" class="img-fluid logo" width="110" height="37">
          </router-link>
 
          <button 
@@ -43,7 +43,7 @@
                   </a>
                   <ul 
                      v-if="menuItem.type == 'sub' && menuItem.children" 
-                     class="sub-menu arrow-up list-unstyled" >
+                     :class="['sub-menu arrow-up list-unstyled', menuItem.customClass]" >
                      <li 
                         class="nav-item" 
                         v-for="(grandchildItem,i) of menuItem.children"
@@ -55,7 +55,7 @@
                            v-if="grandchildItem.type == 'link'" 
                            @click.native="removeCollapseInClass()"      
                         >
-                           {{ grandchildItem.name }}
+                           -- {{ grandchildItem.name }}
                         </router-link>
                      </li>
                   </ul>
@@ -89,16 +89,32 @@
    </nav>
 </template>
 <script>
+import services from '@/assets/json/services.json'
    export default{
       data(){
          return{
             searchactive:false,
-            menus: [
+         }
+      },
+      computed:{
+         menus(){
+            let serviceMenu = {
+               state:"",
+               name:"Services",
+               type:"sub",
+               icon: 'fa fa-caret-down',
+               customClass: ['service-menu'],
+               children: services.map(service => ({
+                  state: '/service/'+service.code, name: service.title, type:"link"
+               }))
+            }
+            return [
                {
                   state: "/home",
                   name: "Home",
                   type:"link"
                },
+               serviceMenu,
                {
                   state:"",
                   name:"Pages",
@@ -155,7 +171,7 @@
                   ]
                }
             ]
-         }
+         },
       },
       mounted(){
          this.onScrollEvent();
@@ -196,6 +212,16 @@
 </script>
 <style>
    .scrollHeader{
-      background-color: #1565c0;
+      /* background-color: #1565c0; */
+      background-color: #5D6976;
    }
+</style>
+
+<style lang="sass" scoped>
+.service-menu
+   width: 95vw
+   max-width: 450px
+.logo
+   width: 110px 
+   height: 55px
 </style>

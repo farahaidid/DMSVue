@@ -1,0 +1,132 @@
+[
+  {
+    "id": 1,
+    "code": "SOCIALMEDIA",
+    "title": "SOCIAL Media Marketing/Management",
+    "description": "",
+    "banner": "social_media.png",
+    "features": [
+      "Social Media Management Services",
+      "Online Review Management Services",
+      "Social Media Design",
+      "Social Advertising Services",
+      "Enterprise Social Advertising Services",
+      "Ecommerce Social Advertising Services",
+      "Direct to Consumer (D2C) Social Media Advertising Services",
+      "YouTube Advertising Services",
+      "Facebook & Instagram ads",
+      "Twitter ads"
+    ]
+  },
+  {
+    "id": 2,
+    "code": "GOOGLEADS",
+    "title": "Google ads",
+    "description": "",
+    "banner": "ga.png",
+    "features": [
+      "PPC/CPC Ads",
+      "Search & Display Campaign",
+      "Google Shopping Ads",
+      "Google Analytics",
+      "Google Tag Manager",
+      "Conversation Tracking with website",
+      "Brand Awareness/Reach campaign"
+    ]
+  },
+  {
+    "id": 3,
+    "code": "CONTENTWRITING",
+    "title": "Content writing",
+    "description": "",
+    "banner": "content.gif",
+    "features": [
+      "SEO Optimized content for Websites/Blogs/Forum etc",
+      "Article writing",
+      "Plagiarized free Original Contents",
+      "Optimized content for Professional website"
+    ]
+  },
+  {
+    "id": 4,
+    "code": "SEARCHENGINEMARKETING",
+    "title": "Search Engine Marketing",
+    "description": "",
+    "banner": "sem.gif",
+    "features": [
+      "Bing ads",
+      "Yahoo ads",
+      "Google ads"
+    ]
+  },
+  {
+    "id": 5,
+    "code": "SEOLEADGENERATION",
+    "title": "SEO & Lead generation",
+    "description": "",
+    "banner": "seo.png",
+    "features": [
+      "On page SEO",
+      "Off page SEO",
+      "Technical SEO",
+      "Worldwide lead collection by your targeted audience",
+      "Real estate/Insurance leads",
+      "Lead generation for Small to medium business owners"
+    ]
+  },
+  {
+    "id": 6,
+    "code": "SHOPIFY",
+    "title": "Shopify/E-Commerce paid and organic promotion",
+    "description": "",
+    "banner": "shofify.png",
+    "features": [
+      "Conversion tracking setup",
+      "Product promotions",
+      "Catalog sales",
+      "Paid and organic marketing",
+      "Image/Video Content making",
+      "Lead collection"
+    ]
+  },
+  {
+    "id": 7,
+    "code": "AMAZON",
+    "title": "Amazon Promotion services",
+    "description": "",
+    "banner": "amazon.png",
+    "features": [
+      "SEO & Product Optimization",
+      "Affiliate Marketing A to Z",
+      "Amazon Advertising Management",
+      "Amazon product launching"
+    ]
+  },
+  {
+    "id": 8,
+    "code": "EMAIL",
+    "title": "Email Marketing",
+    "description": "",
+    "banner": "email.png",
+    "features": [
+      "Bulk email send",
+      "Email collection",
+      "Email template design",
+      "Mail Chimp Email marketing"
+    ]
+  },
+  {
+    "id": 9,
+    "code": "B2B",
+    "title": "B2b Lead generation",
+    "description": "",
+    "banner": "b2b.png",
+    "features": [
+      "Email collection",
+      "Phone no collection",
+      "Company listing",
+      "CEO/Managers/Business owners profile collection",
+      "LinkedIn profile collection"
+    ]
+  }
+]

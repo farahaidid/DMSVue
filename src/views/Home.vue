@@ -6,8 +6,8 @@
         <div class="section-title-wrapper">
           <div class="row">
             <div class="col-sm-12 col-md-6 mx-auto text-center">
-              <h2>Best In Business</h2>
-              <p class="mb-0 lead">Dicta eveniet quasi reiciendis qui eius voluptatum harum optio quibusdam illum.</p>
+              <h2>Services</h2>
+              <!-- <p class="mb-0 lead">Dicta eveniet quasi reiciendis qui eius voluptatum harum optio quibusdam illum.</p> -->
 				          
             </div>
           </div>

@@ -3,17 +3,37 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import About from '../views/Pages/About.vue'
 
+const loadLayout = name => () => import(`@/layouts/${name}Layout.vue`)
+const loadComponent = name => () => import(`@/components/${name}.vue`)
+const loadView = name => () => import(`@/views/${name}.vue`)
+
 Vue.use(VueRouter)
 
 const routes = [
    {
-      path: '/',
-      redirect: '/home'
-   },
-   {
-      path: '/home',
-      name: 'home',
-      component: Home
+      path: '',
+      component: loadLayout('Default'),
+      children:[
+         {
+            path: '/',
+            redirect: '/home'
+         },
+         {
+            path: '/home',
+            name: 'home',
+            component: Home
+         },
+         {
+            path: '/services',
+            name: 'Services',
+            component: loadView('Service/Services')
+         },
+         {
+            path: '/service/:serviceCode',
+            name: 'ServiceDetails',
+            component: loadView('Service/ServiceDetail')
+         },
+      ]
    },
    {
       path: '/about',
