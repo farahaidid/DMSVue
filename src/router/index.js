@@ -33,6 +33,16 @@ const routes = [
             name: 'ServiceDetails',
             component: loadView('Service/ServiceDetail')
          },
+         {
+            path: '/message',
+            name: 'Message',
+            component: loadView('Message/Message')
+         },
+         {
+            path: '/orders',
+            name: 'Orders',
+            component: loadView('Orders/AllOrders')
+         },
       ]
    },
    {

@@ -2,7 +2,7 @@
 import firebase from 'firebase'
 import "firebase/storage"
 import firebaseApp from 'firebase/app'
-import store from '../../store'
+import store from '../store'
 
 let config = {
   apiKey: "AIzaSyCYkogFSJDKfYTrsBVEhawApiX24S4K0Go",
@@ -16,7 +16,7 @@ let config = {
 }
 
 let app = firebase.initializeApp(config);
-export const FIREBASE = firebaseApp
+export const FIREBASE = app
 export const DB = app.firestore()
 
 const st = app.storage().ref()
@@ -25,21 +25,10 @@ export const STORAGE = st
 
 /* FIREBASE AUTH STARTS */
 
-firebase.auth().onIdTokenChanged(function(user) {
-  if (user) {
-    let u = firebase.auth().currentUser
-    console.log(u);
-    let obj = {
-      uid: u.uid,
-      email: u.email,
-      displayName: u.displayName,
-      photoURL: u.photoURL,
-      phoneNumber: u.phoneNumber,
-    }
-    store.commit("AUTH/SET_FIREBASE_USER",obj)
-  }else{
+app.auth().onIdTokenChanged(function(user) {
+  if (!user) {
     store.commit("AUTH/CLEAR_AUTH_DATA",null)
-    store.commit("ENTRY/CLEAR_ENTRY_DATA",null)
+    store.commit("AUTH/LOGOUT")
   }
  });
 

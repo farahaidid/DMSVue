@@ -5,7 +5,7 @@
       class="navbar navbar-expand-md navbar-dark fixed-top py-0"
       :class="$route.path==='/home' ? '' : 'bg-header'"
       >      
-      <div class="rtl-layout" @click="addToggleClass()"><a href="javascript:void(0);">RTL</a></div>
+      <!-- <div class="rtl-layout" @click="addToggleClass()"><a href="javascript:void(0);">RTL</a></div> -->
       <div class="container">
          <router-link class="navbar-brand" to="/home" routerLinkActive="active-link">
             <img src="@/assets/images/logos/logo_transparent.png" class="img-fluid logo" width="110" height="37">
@@ -60,6 +60,19 @@
                      </li>
                   </ul>
                </li>
+               <li class="parent nav-item" v-if="!isLogged">
+                  <span class="nav-link" @click="openLogin">Login</span>
+               </li>
+               <b-nav-item-dropdown right v-else class="p-0 text-center">
+                  <template #button-content>
+                     <div class="user-info d-inline-block">
+                        <b-avatar size="medium" variant="primary" :text="user.fullName[0]"></b-avatar>
+                     </div>
+                  </template>
+                  <b-dropdown-item class="p-0" @click="gotoMessage">Message</b-dropdown-item>
+                  <b-dropdown-item class="p-0" @click="gotoOrders">Orders</b-dropdown-item>
+                  <b-dropdown-item class="p-0" @click="signOut">Sign Out</b-dropdown-item>
+               </b-nav-item-dropdown>
                <li>
                   <div 
                      class="search-form" 
@@ -90,125 +103,143 @@
 </template>
 <script>
 import services from '@/assets/json/services.json'
-   export default{
-      data(){
-         return{
-            searchactive:false,
+import EventBus from '@/plugins/eventBus'
+import { mapActions, mapGetters, mapMutations } from 'vuex'
+export default{
+   data(){
+      return{
+         searchactive:false,
+      }
+   },
+   computed:{
+      ...mapGetters('AUTH', ['isLogged', 'user']),
+      menus(){
+         let serviceMenu = {
+            state:"",
+            name:"Services",
+            type:"sub",
+            icon: 'fa fa-caret-down',
+            customClass: ['service-menu'],
+            children: services.map(service => ({
+               state: '/service/'+service.code, name: service.title, type:"link"
+            }))
          }
-      },
-      computed:{
-         menus(){
-            let serviceMenu = {
+         return [
+            {
+               state: "/home",
+               name: "Home",
+               type:"link"
+            },
+            serviceMenu,
+            {
                state:"",
-               name:"Services",
+               name:"Pages",
                type:"sub",
                icon: 'fa fa-caret-down',
-               customClass: ['service-menu'],
-               children: services.map(service => ({
-                  state: '/service/'+service.code, name: service.title, type:"link"
-               }))
+               children: [
+                  { state: 'about', name: 'About', type:"link"},
+                  { state: 'features', name: 'Features', type:"link"},
+                  { state: 'contact', name: 'Contact', type:"link"},
+                  { state: 'pricing', name: 'Pricing', type:"link"},
+                  { state: 'search', name: 'Search', type:"link"},
+                  { state: 'portfolio-v1', name: 'Portfolio V1', type:"link"},
+                  { state: 'portfolio-v2', name: 'Portfolio V2', type:"link"},
+                  { state: 'portfolio-v3', name: 'Portfolio V3', type:"link"}
+                  
+               ]
+            },
+            {
+               state:"",
+               name:"Features",
+               type:"sub",
+               icon: 'fa fa-caret-down',
+               children: [
+                  { state: 'login', name:'Login', type:"link"},
+                  { state: 'sign-up', name: 'Sign Up', type:"link"},
+                  { state: 'thank-you', name: 'Thank You', type:"link"},
+                  { state: 'maintenance', name: 'Maintenance', type:"link"},
+                  { state: 'not-found', name: '404', type:"link"}
+               ]
+            },
+            {
+               state:"",
+               name:"Shop",
+               type:"sub",
+               icon: 'fa fa-caret-down',
+               children: [
+                  { state: 'product-grid', name:'Product Grid', type:"link"},
+                  { state: 'product-cart', name: 'Product Cart', type:"link"},
+                  { state: 'product-checkout', name: 'Product Checkout', type:"link"},
+                  { state: 'product-detail', name: 'Product Detail', type:"link"}
+               ]
+            },
+            {
+               state:"",
+               name:"Blog",
+               type:"sub",
+               icon: 'fa fa-caret-down',
+               children: [
+                  { state: 'blog-listing-sidebar', name:'blog column ', type:"link"},
+                  { state: 'blog-column3', name: 'Blog Column1', type:"link"},
+                  { state: 'blog-masonry3', name: 'Blog Masonry', type:"link"},
+                  { state: 'blog-sidebar', name: 'Blog Sidebar', type:"link"},
+                  { state: 'blog-detail', name: 'Blog Detail', type:"link"}
+               ]
             }
-            return [
-               {
-                  state: "/home",
-                  name: "Home",
-                  type:"link"
-               },
-               serviceMenu,
-               {
-                  state:"",
-                  name:"Pages",
-                  type:"sub",
-                  icon: 'fa fa-caret-down',
-                  children: [
-                     { state: 'about', name: 'About', type:"link"},
-                     { state: 'features', name: 'Features', type:"link"},
-                     { state: 'contact', name: 'Contact', type:"link"},
-                     { state: 'pricing', name: 'Pricing', type:"link"},
-                     { state: 'search', name: 'Search', type:"link"},
-                     { state: 'portfolio-v1', name: 'Portfolio V1', type:"link"},
-                     { state: 'portfolio-v2', name: 'Portfolio V2', type:"link"},
-                     { state: 'portfolio-v3', name: 'Portfolio V3', type:"link"}
-                   
-                  ]
-               },
-               {
-                  state:"",
-                  name:"Features",
-                  type:"sub",
-                  icon: 'fa fa-caret-down',
-                  children: [
-                     { state: 'login', name:'Login', type:"link"},
-                     { state: 'sign-up', name: 'Sign Up', type:"link"},
-                     { state: 'thank-you', name: 'Thank You', type:"link"},
-                     { state: 'maintenance', name: 'Maintenance', type:"link"},
-                     { state: 'not-found', name: '404', type:"link"}
-                  ]
-               },
-               {
-                  state:"",
-                  name:"Shop",
-                  type:"sub",
-                  icon: 'fa fa-caret-down',
-                  children: [
-                     { state: 'product-grid', name:'Product Grid', type:"link"},
-                     { state: 'product-cart', name: 'Product Cart', type:"link"},
-                     { state: 'product-checkout', name: 'Product Checkout', type:"link"},
-                     { state: 'product-detail', name: 'Product Detail', type:"link"}
-                  ]
-               },
-               {
-                  state:"",
-                  name:"Blog",
-                  type:"sub",
-                  icon: 'fa fa-caret-down',
-                  children: [
-                     { state: 'blog-listing-sidebar', name:'blog column ', type:"link"},
-                     { state: 'blog-column3', name: 'Blog Column1', type:"link"},
-                     { state: 'blog-masonry3', name: 'Blog Masonry', type:"link"},
-                     { state: 'blog-sidebar', name: 'Blog Sidebar', type:"link"},
-                     { state: 'blog-detail', name: 'Blog Detail', type:"link"}
-                  ]
-               }
-            ]
-         },
+         ]
       },
-      mounted(){
-         this.onScrollEvent();
+   },
+   mounted(){
+      this.onScrollEvent();
+   },
+   methods:{
+      ...mapActions('AUTH', ['LOGOUT']),
+      gotoMessage(){
+         this.$router.push({name: 'Message'})
       },
-      methods:{
-         showSearch(){
-            this.searchactive = !this.searchactive;
-         },
-         menuToggleLink(id){
-            if (document.getElementById(id).classList.contains("open")){
-               document.getElementById(id).classList.remove("open");
-            } else if(!document.getElementById(id).classList.contains("open")) {
-               let elements = document.querySelectorAll(".parent");
-               for (var i = 0; i < elements.length; i++) {
-                  elements[i].classList.remove('open');
-               }
-               document.getElementById(id).classList.add("open");
-            }   
-         },
-         addToggleClass(){
-            document.querySelector("body").classList.toggle("rtl-enable");            
-         },
-         removeCollapseInClass(){
-            document.getElementById("navbarCollapse").classList.remove('show');
-         },
-         onScrollEvent(){
-            var headerSticky = document.getElementById('mainNav');
-            window.onscroll = function() {
-               if (window.pageYOffset >= 100) {
-                  headerSticky.classList.add("scrollHeader");
-               }  else {
-                  headerSticky.classList.remove("scrollHeader");
-               }
+      gotoOrders(){
+         this.$router.push({name: 'Orders'})
+      },
+      signOut(){
+         console.log('sd')
+         this.LOGOUT()
+      },
+      openLogin(){
+         console.log('sdf')
+         EventBus.$emit('open-login')
+      },
+      showSearch(){
+         this.searchactive = !this.searchactive;
+      },
+      menuToggleLink(id){
+         if (document.getElementById(id).classList.contains("open")){
+            document.getElementById(id).classList.remove("open");
+         } else if(!document.getElementById(id).classList.contains("open")) {
+            let elements = document.querySelectorAll(".parent");
+            for (var i = 0; i < elements.length; i++) {
+               elements[i].classList.remove('open');
+            }
+            document.getElementById(id).classList.add("open");
+         }   
+      },
+      addToggleClass(){
+         document.querySelector("body").classList.toggle("rtl-enable");            
+      },
+      removeCollapseInClass(){
+         document.getElementById("navbarCollapse").classList.remove('show');
+      },
+      onScrollEvent(){
+         var headerSticky = document.getElementById('mainNav');
+         window.onscroll = function() {
+            if (window.pageYOffset >= 100) {
+               headerSticky.classList.add("scrollHeader");
+            }  else {
+               headerSticky.classList.remove("scrollHeader");
             }
          }
       }
    }
+}
 </script>
 <style>
    .scrollHeader{
