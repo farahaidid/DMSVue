@@ -14,8 +14,11 @@
               </div>
               <div class="mt-3">
                 <!-- <router-link to="/product-cart" class="btn btn-primary btn-lg">Add To Cart</router-link> -->
-                <b-btn size="sm" variant="outline-success" class="buy-btn">
-                  Buy Now <b-icon icon="chat-left-dots" class="ml-1"></b-icon>
+                <b-btn size="sm" variant="outline-success" class="" v-if="!isLogged" @click="openLogin">
+                  Login To Get This Service
+                </b-btn>
+                <b-btn size="sm" variant="outline-success" class="" v-else @click="gotoMessage">
+                  Contact To Get This Service <b-icon icon="chat-left-dots" class="ml-1"></b-icon>
                 </b-btn>
               </div>
               <!-- feature box thumb closed -->
@@ -295,7 +298,8 @@
 <script>
 import services from '@/assets/json/services.json'
 import ServiceCard from '@/components/Service/ServiceCard'
-
+import {mapGetters} from 'vuex'
+import EventBus from '@/plugins/eventBus'
 export default {
   components: {
     ServiceCard
@@ -304,6 +308,7 @@ export default {
     if(!this.service) this.$router.push({name: 'Services'})
   },
   computed:{
+    ...mapGetters('AUTH', ['isLogged', 'user']),
     service(){
       if(!this.$route.params.serviceCode) return null
       return services.find(s => s.code == this.$route.params.serviceCode)
@@ -316,6 +321,12 @@ export default {
   methods:{
     getServiceBanner(name){
       return require('../../assets/images/banners/'+name)
+    },
+    openLogin(){
+      EventBus.$emit('open-login')
+    },
+    gotoMessage(){
+      this.$router.push({name: 'Message'})
     },
   },
 };

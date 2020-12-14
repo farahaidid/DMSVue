@@ -34,14 +34,25 @@ const routes = [
             component: loadView('Service/ServiceDetail')
          },
          {
+            path: '/orders',
+            name: 'Orders',
+            component: loadView('Orders/AllOrders')
+         },
+      ]
+   },
+   {
+      path: '',
+      component: loadLayout('Message'),
+      children:[
+         {
             path: '/message',
             name: 'Message',
             component: loadView('Message/Message')
          },
          {
-            path: '/orders',
-            name: 'Orders',
-            component: loadView('Orders/AllOrders')
+            path: '/live-chat',
+            name: 'LiveChat',
+            component: loadView('Message/LiveChat')
          },
       ]
    },

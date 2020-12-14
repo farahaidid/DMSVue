@@ -4,15 +4,15 @@
       <b-spinner></b-spinner>
     </b-row>
     <div class="message-wrapper d-flex h-100">
-      <b-list-group class="message-user-list w-25 h-100 pr-1" v-if="user.isAdmin">
+      <b-list-group class="message-user-list w-25 h-100 pr-1" v-if="user && user.isAdmin">
         <b-list-group-item :class="['d-flex align-items-center user-card', selectedUser && selectedUser.info.uid == u.info.uid ? 'selected-user':'']" v-for="(u,uI) in users" :key="uI" @click="setSelectedUser(u)">
           <b-avatar class="mr-3" :text="u.info.fullName[0]"></b-avatar>
           <span class="mr-auto user-name">{{u.info.fullName}}</span>
-          <b-badge>{{u.unreadMessages}}</b-badge>
+          <b-badge>{{unreadMessages(u)}}</b-badge>
         </b-list-group-item>
       </b-list-group>
-      <div :class="['messages-with-form d-flex flex-column h-100', user.isAdmin ? 'w-75' : 'w-100']" v-if="selectedUser">
-        <div class="selected-user-info bg-secondary d-flex justify-content-center py-1">
+      <div :class="['messages-with-form d-flex flex-column h-100', user && user.isAdmin ? 'w-75' : 'w-100']" v-if="selectedUser || !isLogged">
+        <div class="selected-user-info bg-secondary d-flex justify-content-center py-1" v-if="selectedUser">
           <p class="name text-white my-0">{{selectedUser.info.fullName}}</p>
           <p class="email text-white my-0">{{selectedUser.info.email}}</p>
         </div>
@@ -35,14 +35,14 @@
         </div>
         <div class="message-form px-2 d-flex align-items-center">
           <validation-observer ref="observer" v-slot="{ handleSubmit }" class="w-100">
-            <b-form @submit.stop.prevent="handleSubmit(addMessage)" :class="[user.isAdmin ? 'w-75' : 'w-100']">
+            <b-form @submit.stop.prevent="handleSubmit(addMessage)" :class="[user && user.isAdmin ? 'w-75' : 'w-100']">
               <validation-provider name="Message" rules="required" v-slot="validationContext">
                 <b-input v-model="messageTxt" placeholder="Type..." :state="getValidationState(validationContext)"></b-input>
                 <b-form-invalid-feedback class="text-left" id="input-2-live-feedback">{{ validationContext.errors[0] }}</b-form-invalid-feedback>
               </validation-provider>
             </b-form>
           </validation-observer>
-          <b-btn v-if="user.isAdmin" size="sm" @click="modal=true">Offer</b-btn>
+          <b-btn v-if="user && user.isAdmin" size="sm" @click="modal=true">Offer</b-btn>
         </div>
       </div>
     </div>
@@ -57,12 +57,18 @@
 
 <script>
 import { DB } from '@/firebase'
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 import moment from 'moment'
 import Modal from '@/components/Modal/Modal'
 import OfferAnOrder from '@/components/Order/OfferOrder'
 import OfferPayment from '@/components/Order/OfferPayment'
 export default {
+  props:{
+    liveChatMode: {
+      type: Boolean,
+      default: true
+    }
+  },
   components:{
     Modal,
     OfferAnOrder,
@@ -83,7 +89,9 @@ export default {
       acceptingOffer: false,
       selectedOffer: null,
 
-      offerPaymentModal: false
+      offerPaymentModal: false,
+
+      liveChats: []
     }
   },
   created(){
@@ -91,9 +99,10 @@ export default {
     // else this.fetchMessages(this.uid)
   },
   computed:{
-    ...mapGetters('AUTH', ['user']),
+    ...mapGetters('AUTH', ['user', 'isLogged']),
+    ...mapGetters('LOCAL_MESSAGE', ['liveChatUid']),
     uid(){
-      return this.user.id
+      return this.isLogged ? this.user.id : this.liveChatUid
     },
     filteredMessages(){
       if(this.selectedUser){
@@ -103,6 +112,13 @@ export default {
     },
   },
   methods:{
+    ...mapActions('LOCAL_MESSAGE', ['FETCH_LIVE_CHAT','ADD_LOCAL_MESSAGE']),
+    unreadMessages(u){
+      if(this.liveChatMode) return 0
+      return this.user.isAdmin ? 
+      (u.messages.filter(m => m.seenByManager == null)).length 
+      : (u.messages.filter(m => m.seenByUser == null)).length
+    },
     async acceptOffer(message){
       this.selectedOffer = message
       this.offerPaymentModal = true
@@ -115,6 +131,12 @@ export default {
     },
     async addMessage(){
       if(this.sendingMessage) return
+      if(!this.isLogged){
+        await this.ADD_LOCAL_MESSAGE(this.messageTxt)
+        this.messageTxt = ''
+        this.$refs.observer.reset();
+        return
+      }
       this.sendingMessage = true
       try{
         let obj = {
@@ -155,15 +177,62 @@ export default {
           if (change.type === "removed") {
             console.log("Removed city: ", change.doc.data());
           }
+          this.$forceUpdate()
         });
       })
-      let unreadMsgsSnaps = this.user.isAdmin ? 
-        await DB.collection('user').doc(uid).collection('messages').where('seenByManager', '==' , null).get()
-        : await DB.collection('user').doc(uid).collection('messages').where('seenByUser', '==' , null).get()
-      let unreadMsgs = unreadMsgsSnaps.docs.length
-      this.users[uid].unreadMessages = unreadMsgs
+      // let unreadMsgsSnaps = this.user.isAdmin ? 
+      //   await DB.collection('user').doc(uid).collection('messages').where('seenByManager', '==' , null).get()
+      //   : await DB.collection('user').doc(uid).collection('messages').where('seenByUser', '==' , null).get()
+      // let unreadMsgs = unreadMsgsSnaps.docs.length
+      // this.users[uid].unreadMessages = unreadMsgs
+    },
+    async fetchLiveChatOf(uid){
+      await DB.collection('liveChat').where('uid','==',uid).onSnapshot(snapshot => {
+        if(this.fetchingMessages) this.fetchingMessages = false
+        snapshot.docChanges().forEach(change => {
+          if (change.type === "added"){
+            this.users[uid].messages.push({
+              id: change.doc.id,
+              ...change.doc.data()
+            })
+          }
+        })
+      })
     },
     async fetchUsersAndMessages(){
+      if(!this.isLogged){
+        this.users = {
+          [this.uid]: {
+            info: {
+              uid: this.uid,
+              fullName: this.uid
+            },
+            messages: []
+          }
+        }
+        this.fetchLiveChatOf(this.uid)
+        this.setSelectedUser(this.users[this.uid])
+        return
+      }
+      if(this.user && this.user.isAdmin && this.liveChatMode){
+        await DB.collection('liveChat').get().then(snaps=>{
+          let uids = snaps.docs.map(doc => doc.data().uid)
+          let uniqueUids = uids.filter((value, index, self) => self.indexOf(value) === index)
+          console.log(uids)
+          uniqueUids.forEach(id => {
+            this.users[id] = {
+              info: {
+                uid: id,
+                fullName: id
+              },
+              messages: [],
+            }
+            this.fetchLiveChatOf(id)
+          })
+          this.fetchingMessages = false
+        })
+        return
+      }
       if(this.user.isAdmin){
         let users = []
         users = await DB.collection('users').get()
@@ -197,14 +266,19 @@ export default {
       let conQ = this.user.isAdmin ? 
         DB.collection('user').doc(this.selectedUser.info.uid).collection('messages').where('seenByManager','==', null)
         : DB.collection('user').doc(this.selectedUser.info.uid).collection('messages').where('seenByUser','==', null)
-      let msgs = await conQ.get(snaps => {
+      if(this.liveChatMode){
+        conQ = DB.collection('liveChat').where('uid','==', this.selectedUser.info.uid)
+      }
+      let msgs = await conQ.get().then(snaps => {
+        console.log('read', snaps)
         snaps.forEach(doc => {
           let obj = this.user.isAdmin ? {
             'seenByManager': moment().format('X')
           }: {
             seenByUser: moment().format('X')
           }
-          DB.collection('user').doc(this.selectedUser.info.uid).collection('messages').doc(doc.id).update(obj)
+          if(this.liveChatMode) DB.collection('liveChat').doc(doc.id).update(obj)
+          else DB.collection('user').doc(this.selectedUser.info.uid).collection('messages').doc(doc.id).update(obj)
         })
       })
     },

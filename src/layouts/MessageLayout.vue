@@ -5,7 +5,6 @@
     <Subscriber v-if="showSubscriber"/>
     <!-- <FooterSlider  v-if="showFooterSlider"/> -->
     <Footer v-if="showHeaderAndFooter"/>
-    <message-fab />
   </div>
 </template>
 <script>
@@ -13,7 +12,7 @@
   import Footer from'@/components/Footer/Footer'
   import Subscriber from 'Components/Sections/Subscriber'
 	// import FooterSlider from 'Components/Sections/FooterSlider'
-  import MessageFab from '@/components/Message/MessageFab'
+
   export default{
     data(){
       return{
@@ -26,8 +25,7 @@
       Header,
 		  Footer,
 		//   FooterSlider,
-      Subscriber,
-      MessageFab
+      Subscriber
     },
     methods: {
       getUrl(){

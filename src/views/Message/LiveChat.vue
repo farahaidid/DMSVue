@@ -1,20 +1,20 @@
 <template>
-  <div class="all-orders">
-    <orders />
+  <div class="live-chat-page">
+    <message :liveChatMode="true" />
   </div>
 </template>
 
 <script>
-import Orders from '@/components/Order/Orders'
+import Message from '@/components/Message/Message'
 export default {
   components: {
-    Orders
+    Message
   },
 }
 </script>
 
 <style lang="sass" scoped>
-.all-orders
+.live-chat-page
   margin-top: 67px
   height: calc(100vh - 70px)
 </style>

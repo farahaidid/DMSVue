@@ -69,9 +69,16 @@
                         <b-avatar size="medium" variant="primary" :text="user.fullName[0]"></b-avatar>
                      </div>
                   </template>
-                  <b-dropdown-item class="p-0" @click="gotoMessage">Message</b-dropdown-item>
-                  <b-dropdown-item class="p-0" @click="gotoOrders">Orders</b-dropdown-item>
-                  <b-dropdown-item class="p-0" @click="signOut">Sign Out</b-dropdown-item>
+                  <b-dropdown-item class="w-100 p-0" @click="gotoMessage">
+                     Message
+                     <b-badge v-if="user && !user.isAdmin">{{unreadMessages}}</b-badge>
+                  </b-dropdown-item>
+                  <b-dropdown-item class="w-100 p-0" @click="gotoLiveChat" v-if="user && user.isAdmin">
+                     Live Chat
+                     <!-- <b-badge v-if="user && !user.isAdmin">{{unreadMessages}}</b-badge> -->
+                  </b-dropdown-item>
+                  <b-dropdown-item class="w-100 p-0" @click="gotoOrders">Orders</b-dropdown-item>
+                  <b-dropdown-item class="w-100 p-0" @click="signOut">Sign Out</b-dropdown-item>
                </b-nav-item-dropdown>
                <li>
                   <div 
@@ -105,10 +112,12 @@
 import services from '@/assets/json/services.json'
 import EventBus from '@/plugins/eventBus'
 import { mapActions, mapGetters, mapMutations } from 'vuex'
+import {DB} from '@/firebase'
 export default{
    data(){
       return{
          searchactive:false,
+         unreadMessages: 0
       }
    },
    computed:{
@@ -191,11 +200,31 @@ export default{
    },
    mounted(){
       this.onScrollEvent();
+      this.watcher()
+   },
+   watch:{
+      user(v){
+         this.watcher()
+      },
    },
    methods:{
       ...mapActions('AUTH', ['LOGOUT']),
+      async watcher(){
+         if (this.user){
+            // DB.collection('user/'+uid+'/messages').onSnapshot(snapshot => {
+            //    snapshot.docChanges().forEach((change) => {
+
+            //    })
+            // })
+            this.unreadMessages = ((await DB.collection('user').doc(this.user.uid).collection('messages').get()).docs
+            .filter(doc => doc.data().seenByUser == null)).length
+         }
+      },
       gotoMessage(){
          this.$router.push({name: 'Message'})
+      },
+      gotoLiveChat(){
+         this.$router.push({name: 'LiveChat'})
       },
       gotoOrders(){
          this.$router.push({name: 'Orders'})
