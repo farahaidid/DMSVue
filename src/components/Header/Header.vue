@@ -80,7 +80,7 @@
                   <b-dropdown-item class="w-100 p-0" @click="gotoOrders">Orders</b-dropdown-item>
                   <b-dropdown-item class="w-100 p-0" @click="signOut">Sign Out</b-dropdown-item>
                </b-nav-item-dropdown>
-               <li>
+               <!-- <li>
                   <div 
                      class="search-form" 
                      click-outside 
@@ -100,9 +100,9 @@
                            <input type="search" class="form-control" placeholder="Search" value="" name="" />
                            <button type="submit"><i class="fa fa-search"></i></button>
                         </form>
-                     </div><!-- /module-container -->
-                  </div><!-- /module -->
-               </li>
+                     </div>
+                  </div>
+               </li> -->
             </ul>
          </div>
       </div>
@@ -140,61 +140,61 @@ export default{
                type:"link"
             },
             serviceMenu,
-            {
-               state:"",
-               name:"Pages",
-               type:"sub",
-               icon: 'fa fa-caret-down',
-               children: [
-                  { state: 'about', name: 'About', type:"link"},
-                  { state: 'features', name: 'Features', type:"link"},
-                  { state: 'contact', name: 'Contact', type:"link"},
-                  { state: 'pricing', name: 'Pricing', type:"link"},
-                  { state: 'search', name: 'Search', type:"link"},
-                  { state: 'portfolio-v1', name: 'Portfolio V1', type:"link"},
-                  { state: 'portfolio-v2', name: 'Portfolio V2', type:"link"},
-                  { state: 'portfolio-v3', name: 'Portfolio V3', type:"link"}
+            // {
+            //    state:"",
+            //    name:"Pages",
+            //    type:"sub",
+            //    icon: 'fa fa-caret-down',
+            //    children: [
+            //       { state: 'about', name: 'About', type:"link"},
+            //       { state: 'features', name: 'Features', type:"link"},
+            //       { state: 'contact', name: 'Contact', type:"link"},
+            //       { state: 'pricing', name: 'Pricing', type:"link"},
+            //       { state: 'search', name: 'Search', type:"link"},
+            //       { state: 'portfolio-v1', name: 'Portfolio V1', type:"link"},
+            //       { state: 'portfolio-v2', name: 'Portfolio V2', type:"link"},
+            //       { state: 'portfolio-v3', name: 'Portfolio V3', type:"link"}
                   
-               ]
-            },
-            {
-               state:"",
-               name:"Features",
-               type:"sub",
-               icon: 'fa fa-caret-down',
-               children: [
-                  { state: 'login', name:'Login', type:"link"},
-                  { state: 'sign-up', name: 'Sign Up', type:"link"},
-                  { state: 'thank-you', name: 'Thank You', type:"link"},
-                  { state: 'maintenance', name: 'Maintenance', type:"link"},
-                  { state: 'not-found', name: '404', type:"link"}
-               ]
-            },
-            {
-               state:"",
-               name:"Shop",
-               type:"sub",
-               icon: 'fa fa-caret-down',
-               children: [
-                  { state: 'product-grid', name:'Product Grid', type:"link"},
-                  { state: 'product-cart', name: 'Product Cart', type:"link"},
-                  { state: 'product-checkout', name: 'Product Checkout', type:"link"},
-                  { state: 'product-detail', name: 'Product Detail', type:"link"}
-               ]
-            },
-            {
-               state:"",
-               name:"Blog",
-               type:"sub",
-               icon: 'fa fa-caret-down',
-               children: [
-                  { state: 'blog-listing-sidebar', name:'blog column ', type:"link"},
-                  { state: 'blog-column3', name: 'Blog Column1', type:"link"},
-                  { state: 'blog-masonry3', name: 'Blog Masonry', type:"link"},
-                  { state: 'blog-sidebar', name: 'Blog Sidebar', type:"link"},
-                  { state: 'blog-detail', name: 'Blog Detail', type:"link"}
-               ]
-            }
+            //    ]
+            // },
+            // {
+            //    state:"",
+            //    name:"Features",
+            //    type:"sub",
+            //    icon: 'fa fa-caret-down',
+            //    children: [
+            //       { state: 'login', name:'Login', type:"link"},
+            //       { state: 'sign-up', name: 'Sign Up', type:"link"},
+            //       { state: 'thank-you', name: 'Thank You', type:"link"},
+            //       { state: 'maintenance', name: 'Maintenance', type:"link"},
+            //       { state: 'not-found', name: '404', type:"link"}
+            //    ]
+            // },
+            // {
+            //    state:"",
+            //    name:"Shop",
+            //    type:"sub",
+            //    icon: 'fa fa-caret-down',
+            //    children: [
+            //       { state: 'product-grid', name:'Product Grid', type:"link"},
+            //       { state: 'product-cart', name: 'Product Cart', type:"link"},
+            //       { state: 'product-checkout', name: 'Product Checkout', type:"link"},
+            //       { state: 'product-detail', name: 'Product Detail', type:"link"}
+            //    ]
+            // },
+            // {
+            //    state:"",
+            //    name:"Blog",
+            //    type:"sub",
+            //    icon: 'fa fa-caret-down',
+            //    children: [
+            //       { state: 'blog-listing-sidebar', name:'blog column ', type:"link"},
+            //       { state: 'blog-column3', name: 'Blog Column1', type:"link"},
+            //       { state: 'blog-masonry3', name: 'Blog Masonry', type:"link"},
+            //       { state: 'blog-sidebar', name: 'Blog Sidebar', type:"link"},
+            //       { state: 'blog-detail', name: 'Blog Detail', type:"link"}
+            //    ]
+            // }
          ]
       },
    },

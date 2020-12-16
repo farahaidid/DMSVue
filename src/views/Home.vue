@@ -116,7 +116,7 @@
         <PortfolioGrid :showNoOfPosts="6"></PortfolioGrid>
       </div>
     </div>
-    <div class="post-section bg-light section-gap">
+    <!-- <div class="post-section bg-light section-gap">
       <div class="container">
        <div class="section-title-wrapper">
           <div class="row">
@@ -132,17 +132,17 @@
           <LatestBlog></LatestBlog>
         </div>
       </div>
-    </div>
+    </div> -->
     <TeamGrid></TeamGrid>
-    <PricingV2></PricingV2>
-    <TestimonialSlider></TestimonialSlider>
+    <!-- <PricingV2></PricingV2> -->
+    <!-- <TestimonialSlider></TestimonialSlider> -->
 
-    <Subscriber />
+    <!-- <Subscriber /> -->
 
     <div class="contact-section">
       <ContactInfo></ContactInfo>
     </div>
-    <div class="send-msg-form bg-gray-dark style-form section-gap">
+    <!-- <div class="send-msg-form bg-gray-dark style-form section-gap">
 
         <div class="container">
 			<div class="section-title-wrapper">
@@ -155,7 +155,7 @@
 			</div>
           <div class="row">
             <div class="col-sm-12 col-md-10 col-lg-7 mx-auto">
-              <!-- <SendMessage></SendMessage> -->
+              <SendMessage></SendMessage>
               <form>
                 <div class="row">
                   <div class="col-md-6">
@@ -191,7 +191,7 @@
           </div>
         </div>
   
-    </div>
+    </div> -->
   </div>
 </template>
 
