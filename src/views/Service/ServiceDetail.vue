@@ -92,14 +92,14 @@
       <div class="tab-style section-gap pt-0">
         <div class="container">
           <ul class="nav nav-tabs nav-tabs-bottom mb-4">
-            <li class="nav-item" aria-expanded="false">
+            <!-- <li class="nav-item" aria-expanded="false">
               <a
                 class="nav-link active"
                 aria-expanded="true"
                 data-toggle="tab"
                 href="#tab-1"
               >Description</a>
-            </li>
+            </li> -->
             <!-- <li class="nav-item">
               <a
                 class="nav-link"
